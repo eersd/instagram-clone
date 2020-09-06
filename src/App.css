@@ -13,11 +13,12 @@
   border: 1px solid lightgray;
   background-color:white;
   padding: 20px;
+  flex-direction: row;
   object-fit: contain;
-  margin-left: auto;
-  margin-right: auto;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  height: 50px;
 }
 
 .app__signup{
@@ -30,6 +31,7 @@
   display: flex;
   justify-content: center;
 }
+
 
 .app__postsRight{
   margin-left: 20px;

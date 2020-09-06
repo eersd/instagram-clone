@@ -33,6 +33,7 @@ const useStyles = makeStyles((theme) => ({
 
 function App() {
   
+  
   const classes = useStyles();
   const [modalStyle] = useState(getModalStyle);
   const [posts,setPosts] = useState([
@@ -55,15 +56,19 @@ function App() {
   const [user,setUser] = useState(null);
   const [openSignIn, setOpenSignIn] = useState(false);
 
+
+  console.log("beginning");
+  console.log(user);
   // useEffect: run code based on specific condition
 
   useEffect(() => {
     auth.onAuthStateChanged((authUser) => {
       if(authUser){
         //user logged in
-        console.log(authUser);
         setUser(authUser);
-
+        console.log("state changed");
+        console.log(user);
+        console.log(authUser);
       }else{
         //user logged out
         setUser(null);
@@ -84,13 +89,14 @@ function App() {
   const signUp = (event) => {
     event.preventDefault();
 
+    console.log("sign up");
+    console.log(user);
     auth
     .createUserWithEmailAndPassword(email,password)
     .then((authUser) => {
       return authUser.user.updateProfile({
         displayName: username
       })
-
     })
     .catch((error) => alert(error.message));
 
@@ -191,15 +197,15 @@ function App() {
           
           {user ? (
             <div className="post__avatar">
-            <Avatar
-                className="post__avatar"
-                alt='userr'
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRYPRLSISP2uoEdGxNPVFrz02gI2KWiJ_VwNA&usqp=CAU">
-            </Avatar>
+              <Avatar
+                  className="post__avatar"
+                  alt='user'
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRYPRLSISP2uoEdGxNPVFrz02gI2KWiJ_VwNA&usqp=CAU">
+              </Avatar>
 
-            <h3>{user}</h3>
-            
-            <Button onClick={() => auth.signOut()} >Logoutt</Button>
+              <h3>{user.displayName}</h3>
+              
+              <Button onClick={() => auth.signOut()} >Logout</Button>
             </div>
           ): (
             <div className="app_loginContainer">

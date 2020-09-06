@@ -28,6 +28,8 @@
 
 .post__avatar{
     margin: 10px;
+    display: flex;
+    align-items: center;
 }
 
 .post__commentBox{
